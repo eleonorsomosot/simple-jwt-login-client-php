@@ -65,7 +65,8 @@ class Curl implements CurlInterface
             return null;
         }
         /** @var array<string,mixed>|null $result */
-        $result = json_decode($response, true);
+        $info = curl_getinfo($curl);
+        $result = json_decode(substr($response, $info['header_size']), true);
 
         return $result;
     }
