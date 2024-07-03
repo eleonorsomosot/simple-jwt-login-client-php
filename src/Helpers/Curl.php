@@ -64,8 +64,9 @@ class Curl implements CurlInterface
         if (is_bool($response)) {
             return null;
         }
-        /** @var array<string,mixed>|null $result */
         $info = curl_getinfo($curl);
+
+        /** @var array<string,mixed>|null $result */
         $result = json_decode(substr($response, $info['header_size']), true);
 
         return $result;
